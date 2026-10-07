@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Zeinac Technologies, Ranchi — Technology & Supply Solutions for Government, Corporate & Institutions." />
+  <title>Zeinac Technologies | Technology & Supply Solutions — Ranchi</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+  <style>
+    :root {
+      --zt-primary: #0d3b66;
+      --zt-accent: #1b98e0;
+      --zt-light: #f5f9fc;
+      --zt-grad: linear-gradient(135deg, #0d3b66 0%, #1b98e0 100%);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: "Poppins", "Segoe UI", system-ui, Roboto, Arial, sans-serif; color: #243b53; }
+    h1,h2,h3,h4,h5,h6 { font-weight: 700; }
+
+    .navbar { transition: all .3s ease; }
+    .navbar.scrolled { box-shadow: 0 6px 24px rgba(13,59,102,.25); }
+    .navbar-brand span.logo-mark {
+      background: var(--zt-grad); color: #fff; font-weight: 800;
+      border-radius: 10px; padding: 3px 12px; margin-right: 10px;
+      box-shadow: 0 4px 12px rgba(27,152,224,.4);
+    }
+    .navbar .nav-link { position: relative; font-weight: 500; }
+    .navbar .nav-link::after {
+      content: ""; position: absolute; left: 12px; right: 12px; bottom: 6px; height: 2px;
+      background: #fff; transform: scaleX(0); transform-origin: left; transition: transform .25s ease;
+    }
+    .navbar .nav-link:hover::after { transform: scaleX(1); }
+
+    .text-zt-primary { color: var(--zt-primary) !important; }
+    .bg-zt-primary { background-color: var(--zt-primary) !important; }
+    .bg-zt-grad { background: var(--zt-grad) !important; }
+    .bg-zt-light { background-color: var(--zt-light) !important; }
+    .btn-zt { background: var(--zt-grad); border: none; color: #fff;
+      box-shadow: 0 6px 16px rgba(27,152,224,.35); transition: transform .2s ease, box-shadow .2s ease; }
+    .btn-zt:hover { color: #fff; transform: translateY(-2px); box-shadow: 0 10px 22px rgba(27,152,224,.45); }
+    .btn-outline-zt { color: #fff; border: 2px solid #fff; }
+    .btn-outline-zt:hover { background: #fff; color: var(--zt-primary); }
+
+    .hero-carousel .carousel-item { height: 92vh; min-height: 560px; background-size: cover; background-position: center; }
+    .hero-carousel .carousel-item::before {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(120deg, rgba(13,59,102,.92), rgba(13,59,102,.55) 55%, rgba(27,152,224,.45));
+    }
+    .hero-carousel .slide-content { position: relative; z-index: 2; }
+    .hero-carousel h1 { font-weight: 800; font-size: clamp(1.9rem, 4vw, 3.4rem); line-height: 1.15; }
+    .hero-carousel .lead { max-width: 680px; }
+    .carousel-indicators [data-bs-target] { width: 12px; height: 12px; border-radius: 50%; }
+
+    section { scroll-margin-top: 80px; }
+    .section-title { color: var(--zt-primary); position: relative; display: inline-block; }
+    .section-title::after { content: ""; display: block; width: 60px; height: 4px; border-radius: 4px;
+      background: var(--zt-grad); margin: 10px auto 0; }
+    .text-start .section-title::after { margin-left: 0; }
+    .section-subtitle { color: #6b7a8d; }
+
+    .product-card, .service-card, .industry-card {
+      border: none; border-radius: 18px; background: #fff;
+      transition: transform .25s ease, box-shadow .25s ease; height: 100%;
+    }
+    .product-card:hover, .service-card:hover, .industry-card:hover {
+      transform: translateY(-8px); box-shadow: 0 18px 40px rgba(13,59,102,0.18);
+    }
+    .icon-circle {
+      width: 70px; height: 70px; display: flex; align-items: center; justify-content: center;
+      background: var(--zt-grad); color: #fff; border-radius: 18px; font-size: 1.7rem; margin: 0 auto 1rem;
+      box-shadow: 0 8px 18px rgba(27,152,224,.3); transition: transform .25s ease;
+    }
+    .product-card:hover .icon-circle, .service-card:hover .icon-circle, .industry-card:hover .icon-circle {
+      transform: rotate(-6deg) scale(1.06);
+    }
+    .feature-check i { color: #9fe3ff; }
+    .stat-num { font-size: 2.2rem; font-weight: 800; color: var(--zt-primary); }
+
+    .client-badge {
+      background: #fff; border: 1px solid #e3edf5; border-radius: 14px; padding: 1.1rem;
+      text-align: center; font-weight: 600; color: var(--zt-primary); height: 100%;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .client-badge:hover { transform: translateY(-4px); box-shadow: 0 10px 24px rgba(13,59,102,.12); }
+
+    .testimonial-card {
+      background: #fff; border-radius: 20px; padding: 2.5rem; max-width: 760px; margin: 0 auto;
+      box-shadow: 0 16px 40px rgba(13,59,102,.1);
+    }
+    .testimonial-card .bi-quote { font-size: 3rem; color: var(--zt-accent); opacity: .3; }
+    .testimonial-avatar { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; border: 3px solid var(--zt-accent); }
+    #testimonials .carousel-control-prev, #testimonials .carousel-control-next { width: 5%; filter: invert(.5); }
+
+    .form-control, .form-select { border-radius: 10px; padding: .6rem .9rem; }
+    .form-control:focus, .form-select:focus { border-color: var(--zt-accent); box-shadow: 0 0 0 .2rem rgba(27,152,224,.2); }
+
+    footer a { color: #cfe4f5; text-decoration: none; }
+    footer a:hover { color: #fff; }
+
+    .quote-float { position: fixed; right: 20px; bottom: 20px; z-index: 1050; box-shadow: 0 8px 20px rgba(0,0,0,.25); }
+    .back-top { position: fixed; left: 20px; bottom: 20px; z-index: 1050; display: none; }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-zt-primary sticky-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="#home"><span class="logo-mark">ZT</span> Zeinac Technologies</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="#products">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="#gem">Government &amp; GeM</a></li>
+          <li class="nav-item"><a class="nav-link" href="#industries">Industries</a></li>
+          <li class="nav-item"><a class="nav-link" href="#why">Why Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="#clients">Clients</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+          <li class="nav-item ms-lg-2"><a class="btn btn-zt btn-sm px-3 mt-2 mt-lg-0" href="#quote">Request a Quote</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO CAROUSEL -->
+  <header id="home">
+    <div id="heroCarousel" class="carousel slide hero-carousel" data-bs-ride="carousel" data-bs-interval="4500">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true"></button>
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active" style="background-image:url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=70');">
+          <div class="container h-100 d-flex align-items-center">
+            <div class="slide-content text-white" data-aos="fade-up">
+              <h1 class="mb-3">Technology &amp; Supply Solutions for Government, Corporate &amp; Institutions</h1>
+              <p class="lead mb-4">Zeinac Technologies, Ranchi — your trusted partner for IT hardware, surveillance, office supplies, AMC &amp; institutional procurement through GeM and tenders.</p>
+              <div class="d-flex flex-wrap gap-3">
+                <a href="#quote" class="btn btn-zt btn-lg px-4">Request a Quote</a>
+                <a href="#products" class="btn btn-outline-zt btn-lg px-4">Explore Products</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item" style="background-image:url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1600&q=70');">
+          <div class="container h-100 d-flex align-items-center">
+            <div class="slide-content text-white" data-aos="fade-up">
+              <h1 class="mb-3">IT Hardware, Servers &amp; CCTV — Delivered &amp; Supported</h1>
+              <p class="lead mb-4">Laptops, desktops, printers, servers and surveillance systems with reliable AMC &amp; on-site IT support.</p>
+              <div class="d-flex flex-wrap gap-3">
+                <a href="#services" class="btn btn-zt btn-lg px-4">Our Services</a>
+                <a href="#contact" class="btn btn-outline-zt btn-lg px-4">Contact Us</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item" style="background-image:url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=70');">
+          <div class="container h-100 d-flex align-items-center">
+            <div class="slide-content text-white" data-aos="fade-up">
+              <h1 class="mb-3">Trusted GeM &amp; Tender Supply Partner</h1>
+              <p class="lead mb-4">Transparent, compliant and timely procurement for government departments and institutions.</p>
+              <div class="d-flex flex-wrap gap-3">
+                <a href="#gem" class="btn btn-zt btn-lg px-4">Government &amp; GeM</a>
+                <a href="#quote" class="btn btn-outline-zt btn-lg px-4">Request a Quote</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ABOUT -->
+  <section id="about" class="py-5">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6" data-aos="fade-right">
+          <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&q=60"
+               class="img-fluid rounded-4 shadow" alt="Zeinac Technologies office" />
+        </div>
+        <div class="col-lg-6 text-start" data-aos="fade-left">
+          <h2 class="section-title mb-3">About Us</h2>
+          <p class="section-subtitle">
+            <strong>Zeinac Technologies</strong> is a Ranchi-based technology and supply company
+            delivering reliable IT hardware, security systems, and office solutions to
+            government bodies, corporates, and institutions across Jharkhand and beyond.
+          </p>
+          <p>
+            We specialize in end-to-end procurement and support — from supplying laptops,
+            servers and CCTV systems to providing Annual Maintenance Contracts (AMC) and
+            on-site IT support. With strong experience in GeM and tender-based supply, we
+            make institutional purchasing simple, compliant, and dependable.
+          </p>
+          <div class="row mt-4 text-center">
+            <div class="col-4"><div class="stat-num">500+</div><small class="text-muted">Orders Delivered</small></div>
+            <div class="col-4"><div class="stat-num">50+</div><small class="text-muted">Institutions Served</small></div>
+            <div class="col-4"><div class="stat-num">10+</div><small class="text-muted">Years Experience</small></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section id="products" class="py-5 bg-zt-light">
+    <div class="container">
+      <div class="text-center mb-5" data-aos="fade-up">
+        <h2 class="section-title">Our Products</h2>
+        <p class="section-subtitle mt-2">A complete range of IT hardware, security and office supplies.</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-sm-6 col-lg-3" data-aos="zoom-in" data-aos-delay="0">
+          <div class="card product-card shadow-sm p-4 text-center">
+            <div class="icon-circle"><i class="bi bi-laptop"></i></div>
+            <h5 class="text-zt-primary">Laptops</h5>
+            <p class="small text-muted mb-0">Business &amp; institutional laptops from leading brands.</p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3" data-aos="zoom-in" data-aos-delay="50">
+          <div class="card product-card shadow-sm p-4 text-center">
+            <div class="icon-circle"><i class="bi bi-pc-display"></i></div>
+            <h5 class="text-zt-primary">Desktops</h5>
+            <p class="small text-muted mb-0">Reliable desktop systems for offices and labs.</p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3" data-aos="zoom-in" data-aos-delay="100">
+          <div class="card product-card shadow-sm p-4 text-center">
+            <div class="icon-circle"><i class="bi bi-printer"></i></div>
+            <h5 class="text-zt-primary">Printers</h5>
+            <p class="small text-muted mb-0">Laser, inkjet &amp; multifunction printers.</p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3" data-aos="zoom-in" data-aos-delay="150">
+          <div class="card product-card shadow-sm p-4 text-center">
+            <div class="icon-circle"><i class="bi bi-hdd-stack"></i></div>
+            <h5 class="text-zt-primary">Servers</h5>
+            <p class="small text-muted mb-0">Enterprise servers &amp; storage solutions.</p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3" data-aos="zoom-in" data-aos-delay="0">
+          <div class="card product-card shadow-sm p-4 text-center">
+            <div class="icon-circle"><i class="bi bi-camera-video"></i></div>
+            <h5 class="text-zt-primary">CCTV</h5>
+            <p class="small text-muted mb-0">Surveillance cameras &amp; security systems.</p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3" data-aos="zoom-in" data-aos-delay="50">
+          <div class="card product-card shadow-sm p-4 text-center">
+            <div class="icon-circle"><i class="bi bi-files"></i></div>
+            <h5 class="text-zt-primary">Photocopiers</h5>
+            <p class="small text-muted mb-0">Copiers &amp; document solutions for high-volume offices.</p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3" data-aos="zoom-in" data-aos-delay="100">
+          <div class="card product-card shadow-sm p-4 text-center">
+            <div class="icon-circle"><i class="bi bi-easel2"></i></div>
+            <h5 class="text-zt-primary">Office Furniture</h5>
+            <p class="small text-muted mb-0">Chairs, desks, workstations &amp; storage units.</p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3" data-aos="zoom-in" data-aos-delay="150">
+          <div class="card product-card shadow-sm p-4 text-center">
+            <div class="icon-circle"><i class="bi bi-box-seam"></i></div>
+            <h5 class="text-zt-primary">Office Supplies</h5>
+            <p class="small text-muted mb-0">Consumables, stationery &amp; everyday essentials.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="py-5">
+    <div class="container">
+      <div class="text-center mb-5" data-aos="fade-up">
+        <h2 class="section-title">Our Services</h2>
+        <p class="section-subtitle mt-2">Reliable support that keeps your technology running.</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3" data-aos="flip-left" data-aos-delay="0">
+          <div class="card service-card shadow-sm p-4 text-center">
+            <div class="icon-circle"><i class="bi bi-wrench-adjustable"></i></div>
+            <h5 class="text-zt-primary">AMC</h5>
+            <p class="small text-muted mb-0">Annual Maintenance Contracts for hardware &amp; peripherals.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3" data-aos="flip-left" data-aos-delay="100">
+          <div class="card service-card shadow-sm p-4 text-center">
+            <div class="icon-circle"><i class="bi bi-headset"></i></div>
+            <h5 class="text-zt-primary">IT Support</h5>
+            <p class="small text-muted mb-0">On-site &amp; remote technical support for all your systems.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3" data-aos="flip-left" data-aos-delay="200">
+          <div class="card service-card shadow-sm p-4 text-center">
+            <div class="icon-circle"><i class="bi bi-tools"></i></div>
+            <h5 class="text-zt-primary">Installation</h5>
+            <p class="small text-muted mb-0">Professional setup of hardware, networks &amp; CCTV.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3" data-aos="flip-left" data-aos-delay="300">
+          <div class="card service-card shadow-sm p-4 text-center">
+            <div class="icon-circle"><i class="bi bi-building-gear"></i></div>
+            <h5 class="text-zt-primary">Govt / Institutional Supply</h5>
+            <p class="small text-muted mb-0">Bulk supply &amp; procurement for public institutions.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GOVERNMENT & GeM -->
+  <section id="gem" class="py-5 bg-zt-grad text-white">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6" data-aos="fade-right">
+          <h2 class="fw-bold mb-3">Government &amp; GeM Supply Capabilities</h2>
+          <p class="mb-4">
+            Zeinac Technologies is well-versed in public procurement. We supply through the
+            <strong>Government e-Marketplace (GeM)</strong> and participate in open tenders,
+            ensuring transparent, compliant, and timely delivery for government departments
+            and institutions.
+          </p>
+          <ul class="list-unstyled feature-check">
+            <li class="mb-2"><i class="bi bi-check-circle-fill me-2"></i> Registered GeM seller for IT &amp; office products</li>
+            <li class="mb-2"><i class="bi bi-check-circle-fill me-2"></i> Tender participation &amp; bid management</li>
+            <li class="mb-2"><i class="bi bi-check-circle-fill me-2"></i> Documentation, warranty &amp; compliance support</li>
+            <li class="mb-2"><i class="bi bi-check-circle-fill me-2"></i> On-time bulk delivery &amp; after-sales service</li>
+          </ul>
+          <a href="#quote" class="btn btn-light text-zt-primary fw-semibold mt-2">Request Tender/GeM Quote</a>
+        </div>
+        <div class="col-lg-6 text-center" data-aos="zoom-in">
+          <i class="bi bi-bank2" style="font-size: 11rem; opacity: .9;"></i>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INDUSTRIES -->
+  <section id="industries" class="py-5">
+    <div class="container">
+      <div class="text-center mb-5" data-aos="fade-up">
+        <h2 class="section-title">Industries We Serve</h2>
+        <p class="section-subtitle mt-2">Trusted across the public and private sectors.</p>
+      </div>
+      <div class="row g-4 justify-content-center">
+        <div class="col-6 col-md-4 col-lg-2" data-aos="zoom-in" data-aos-delay="0">
+          <div class="card industry-card shadow-sm p-4 text-center">
+            <div class="icon-circle"><i class="bi bi-bank"></i></div>
+            <h6 class="text-zt-primary mb-0">Government</h6>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2" data-aos="zoom-in" data-aos-delay="50">
+          <div class="card industry-card shadow-sm p-4 text-center">
+            <div class="icon-circle"><i class="bi bi-briefcase"></i></div>
+            <h6 class="text-zt-primary mb-0">Corporate</h6>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2" data-aos="zoom-in" data-aos-delay="100">
+          <div class="card industry-card shadow-sm p-4 text-center">
+            <div class="icon-circle"><i class="bi bi-hospital"></i></div>
+            <h6 class="text-zt-primary mb-0">Hospitals</h6>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2" data-aos="zoom-in" data-aos-delay="150">
+          <div class="card industry-card shadow-sm p-4 text-center">
+            <div class="icon-circle"><i class="bi bi-mortarboard"></i></div>
+            <h6 class="text-zt-primary mb-0">Schools</h6>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2" data-aos="zoom-in" data-aos-delay="200">
+          <div class="card industry-card shadow-sm p-4 text-center">
+            <div class="icon-circle"><i class="bi bi-building"></i></div>
+            <h6 class="text-zt-primary mb-0">Universities</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE US -->
+  <section id="why" class="py-5 bg-zt-light">
+    <div class="container">
+      <div class="text-center mb-5" data-aos="fade-up">
+        <h2 class="section-title">Why Choose Us</h2>
+        <p class="section-subtitle mt-2">Experience, reliability and compliance you can count on.</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="0">
+          <div class="text-center px-3">
+            <div class="icon-circle"><i class="bi bi-award"></i></div>
+            <h5 class="text-zt-primary">Trusted Supplier</h5>
+            <p class="small text-muted">Proven track record with government &amp; institutions.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+          <div class="text-center px-3">
+            <div class="icon-circle"><i class="bi bi-truck"></i></div>
+            <h5 class="text-zt-primary">Timely Delivery</h5>
+            <p class="small text-muted">On-time bulk supply across Jharkhand &amp; nearby regions.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+          <div class="text-center px-3">
+            <div class="icon-circle"><i class="bi bi-shield-check"></i></div>
+            <h5 class="text-zt-primary">Compliance First</h5>
+            <p class="small text-muted">Full GeM/tender documentation &amp; warranty support.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+          <div class="text-center px-3">
+            <div class="icon-circle"><i class="bi bi-cash-coin"></i></div>
+            <h5 class="text-zt-primary">Competitive Pricing</h5>
+            <p class="small text-muted">Best value procurement without compromising quality.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLIENTS -->
+  <section id="clients" class="py-5">
+    <div class="container">
+      <div class="text-center mb-5" data-aos="fade-up">
+        <h2 class="section-title">Clients / Departments</h2>
+        <p class="section-subtitle mt-2">Proudly serving a wide range of departments &amp; organizations.</p>
+      </div>
+      <div class="row g-3">
+        <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="0"><div class="client-badge">Health Department</div></div>
+        <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="50"><div class="client-badge">Education Department</div></div>
+        <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="100"><div class="client-badge">Police &amp; Security</div></div>
+        <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="150"><div class="client-badge">Municipal Corporation</div></div>
+        <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="0"><div class="client-badge">District Administration</div></div>
+        <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="50"><div class="client-badge">Universities &amp; Colleges</div></div>
+        <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="100"><div class="client-badge">Corporate Offices</div></div>
+        <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="150"><div class="client-badge">Hospitals &amp; Clinics</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials" class="py-5 bg-zt-light">
+    <div class="container">
+      <div class="text-center mb-5" data-aos="fade-up">
+        <h2 class="section-title">What Our Clients Say</h2>
+        <p class="section-subtitle mt-2">Trusted by departments and organizations across the region.</p>
+      </div>
+      <div id="testiCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="testimonial-card text-center">
+              <i class="bi bi-quote"></i>
+              <p class="fs-5 fst-italic mb-4">"Zeinac Technologies delivered our entire computer lab and server upgrade on time and within budget. Their GeM process handling was seamless."</p>
+              <h6 class="mb-0 text-zt-primary">Dr. Raj Kumar Sharma</h6>
+              <small class="text-muted">Registrar, Ranchi University</small>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="testimonial-card text-center">
+              <i class="bi bi-quote"></i>
+              <p class="fs-5 fst-italic mb-4">"Reliable supply and excellent AMC support. Our school's IT systems and CCTV have never run smoother."</p>
+              <h6 class="mb-0 text-zt-primary">Sk Kandulna</h6>
+              <small class="text-muted">St. Aloysius School, Ranchi</small>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#testiCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#testiCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- REQUEST A QUOTE -->
+  <section id="quote" class="py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8" data-aos="zoom-in">
+          <div class="card shadow border-0 rounded-4">
+            <div class="card-body p-4 p-md-5">
+              <div class="text-center">
+                <h2 class="section-title mb-2">Request a Quote</h2>
+              </div>
+              <p class="section-subtitle text-center mb-4 mt-2">
+                Tell us what you need and our team will get back to you with a tailored quote.
+              </p>
+              <form onsubmit="return handleQuote(event)">
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label class="form-label">Full Name *</label>
+                    <input type="text" class="form-control" required placeholder="Your name" />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Organization / Department</label>
+                    <input type="text" class="form-control" placeholder="e.g. Health Department" />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Email *</label>
+                    <input type="email" class="form-control" required placeholder="you@example.com" />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Phone *</label>
+                    <input type="tel" class="form-control" required placeholder="+91 XXXXX XXXXX" />
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label">Products / Services of Interest</label>
+                    <select class="form-select">
+                      <option selected>Select...</option>
+                      <option>Laptops</option>
+                      <option>Desktops</option>
+                      <option>Printers</option>
+                      <option>Servers</option>
+                      <option>CCTV</option>
+                      <option>Photocopiers</option>
+                      <option>Office Furniture &amp; Supplies</option>
+                      <option>AMC / IT Support</option>
+                      <option>GeM / Tender Supply</option>
+                    </select>
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label">Requirement Details</label>
+                    <textarea class="form-control" rows="4" placeholder="Describe your requirement, quantity, timelines, etc."></textarea>
+                  </div>
+                  <div class="col-12 text-center">
+                    <button type="submit" class="btn btn-zt btn-lg px-5">Submit Request</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="py-5 bg-zt-light">
+    <div class="container">
+      <div class="text-center mb-5" data-aos="fade-up">
+        <h2 class="section-title">Contact Us</h2>
+        <p class="section-subtitle mt-2">Reach out to our Ranchi office — we're happy to help.</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-lg-5" data-aos="fade-right">
+          <div class="card border-0 shadow-sm rounded-4 h-100">
+            <div class="card-body p-4">
+              <h5 class="text-zt-primary mb-4">Zeinac Technologies — Ranchi</h5>
+              <p class="mb-3"><i class="bi bi-person-fill text-zt-primary me-2"></i> Md. Asif</p>
+              <p class="mb-3"><i class="bi bi-geo-alt-fill text-zt-primary me-2"></i> Ranchi, Jharkhand, India</p>
+              <p class="mb-3"><i class="bi bi-telephone-fill text-zt-primary me-2"></i>
+                <a href="tel:+918102832481" class="text-decoration-none text-dark">+91 81028 32481</a></p>
+              <p class="mb-3"><i class="bi bi-whatsapp text-zt-primary me-2"></i>
+                <a href="https://wa.me/918102832481" target="_blank" rel="noopener" class="text-decoration-none text-dark">+91 81028 32481</a></p>
+              <p class="mb-3"><i class="bi bi-envelope-fill text-zt-primary me-2"></i>
+                <a href="mailto:info@zeinactech.com" class="text-decoration-none text-dark">info@zeinactech.com</a></p>
+              <p class="mb-0"><i class="bi bi-clock-fill text-zt-primary me-2"></i> Mon – Sat: 9:30 AM – 6:30 PM</p>
+              <hr class="my-4" />
+              <div class="d-flex gap-3 fs-4">
+                <a href="#" class="text-zt-primary"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="text-zt-primary"><i class="bi bi-linkedin"></i></a>
+                <a href="https://wa.me/918102832481" target="_blank" rel="noopener" class="text-zt-primary"><i class="bi bi-whatsapp"></i></a>
+                <a href="#" class="text-zt-primary"><i class="bi bi-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-7" data-aos="fade-left">
+          <div class="card border-0 shadow-sm rounded-4 h-100">
+            <div class="card-body p-4">
+              <h5 class="text-zt-primary mb-3">Send an Enquiry</h5>
+              <form onsubmit="return handleEnquiry(event)">
+                <div class="row g-3">
+                  <div class="col-md-6"><input type="text" class="form-control" placeholder="Name *" required /></div>
+                  <div class="col-md-6"><input type="email" class="form-control" placeholder="Email *" required /></div>
+                  <div class="col-12"><input type="text" class="form-control" placeholder="Subject" /></div>
+                  <div class="col-12"><textarea class="form-control" rows="4" placeholder="Your message *" required></textarea></div>
+                  <div class="col-12"><button type="submit" class="btn btn-zt px-4">Send Enquiry</button></div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-4" data-aos="fade-up">
+        <div class="col-12">
+          <div class="ratio ratio-21x9 rounded-4 overflow-hidden shadow-sm">
+            <iframe src="https://www.google.com/maps?q=Ranchi,Jharkhand&output=embed"
+              style="border:0;" allowfullscreen="" loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade" title="Ranchi location map"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-zt-primary text-white pt-5 pb-4">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <h5 class="d-flex align-items-center"><span class="logo-mark">ZT</span> Zeinac Technologies</h5>
+          <p class="small text-light opacity-75 mt-2">
+            Technology &amp; Supply Solutions for Government, Corporate &amp; Institutions. Based in Ranchi, Jharkhand.
+          </p>
+        </div>
+        <div class="col-6 col-md-2">
+          <h6 class="fw-bold mb-3">Company</h6>
+          <ul class="list-unstyled small">
+            <li class="mb-2"><a href="#about">About Us</a></li>
+            <li class="mb-2"><a href="#why">Why Choose Us</a></li>
+            <li class="mb-2"><a href="#clients">Clients</a></li>
+            <li class="mb-2"><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md-3">
+          <h6 class="fw-bold mb-3">What We Offer</h6>
+          <ul class="list-unstyled small">
+            <li class="mb-2"><a href="#products">Products</a></li>
+            <li class="mb-2"><a href="#services">Services</a></li>
+            <li class="mb-2"><a href="#gem">Government &amp; GeM</a></li>
+            <li class="mb-2"><a href="#industries">Industries</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3">
+          <h6 class="fw-bold mb-3">Get in Touch</h6>
+          <p class="small mb-2"><i class="bi bi-person me-2"></i>Md. Asif</p>
+          <p class="small mb-2"><i class="bi bi-geo-alt me-2"></i>Ranchi, Jharkhand</p>
+          <p class="small mb-2"><i class="bi bi-telephone me-2"></i>+91 81028 32481</p>
+          <p class="small mb-0"><i class="bi bi-envelope me-2"></i>info@zeinactech.com</p>
+        </div>
+      </div>
+      <hr class="border-light opacity-25 my-4" />
+      <div class="text-center small text-light opacity-75">
+        &copy; <span id="year"></span> Zeinac Technologies, Ranchi. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating buttons -->
+  <a href="#quote" class="btn btn-zt rounded-pill px-4 py-2 quote-float">
+    <i class="bi bi-chat-dots me-1"></i> Request a Quote
+  </a>
+  <button id="backTop" class="btn btn-zt rounded-circle back-top" style="width:46px;height:46px;" aria-label="Back to top">
+    <i class="bi bi-arrow-up"></i>
+  </button>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    // Scroll-reveal animations
+    AOS.init({ duration: 700, once: true, offset: 80 });
+
+    // Current year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Navbar shadow + back-to-top visibility on scroll
+    var navbar = document.getElementById("navbar");
+    var backTop = document.getElementById("backTop");
+    window.addEventListener("scroll", function () {
+      if (window.scrollY > 40) { navbar.classList.add("scrolled"); } else { navbar.classList.remove("scrolled"); }
+      backTop.style.display = window.scrollY > 400 ? "inline-flex" : "none";
+    });
+    backTop.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    // Collapse mobile navbar after clicking a link
+    document.querySelectorAll('#mainNav .nav-link, #mainNav .btn').forEach(function (link) {
+      link.addEventListener('click', function () {
+        var nav = document.getElementById('mainNav');
+        var collapse = bootstrap.Collapse.getInstance(nav);
+        if (collapse && window.innerWidth < 992) { collapse.hide(); }
+      });
+    });
+
+    // Front-end form handlers (static site — no backend)
+    function handleQuote(e) {
+      e.preventDefault();
+      alert("Thank you! Your quote request has been noted. Our team will contact you shortly.");
+      e.target.reset();
+      return false;
+    }
+    function handleEnquiry(e) {
+      e.preventDefault();
+      alert("Thank you for reaching out! We will respond to your enquiry soon.");
+      e.target.reset();
+      return false;
+    }
+  </script>
+</body>
+</html>
